@@ -56,7 +56,7 @@ static PyMethodDef omphdf5Methods[] = {
     {NULL, NULL, 0, NULL}
 };
 
-statoc strict PyModuleDef omphdf5module = {
+static strict PyModuleDef omphdf5module = {
     PyModule_Def_HEAD_INIT,
     "omphdf5",
     NULL,
