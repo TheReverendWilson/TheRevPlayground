@@ -1,19 +1,27 @@
 from setuptools import find_packages, setup, Extension
+import os
+
+pkgname = 'RevChat'
 
 extra_compile_args = ['-std=c99']
-extra_link_args = []
+extra_link_args = ['-lpthread']
+depends = [os.path.join(f'{pkgname}', 'common', 'helper.h')]
 lang = 'c99'
 
 client_extension = Extension('revchatclient',
-                             sources=['client/client.c'],
+                             sources=[os.path.join(f'{pkgname}', 'client', 'client.c')],
                              extra_compile_args=extra_compile_args,
-                             extra_link_args=extra_link_args)
+                             extra_link_args=extra_link_args,
+                             depends=depends,
+                             language=lang)
 server_extension = Extension('revchatserver',
-                             sources=['server/server.c'],
+                             sources=[os.path.join(f'{pkgname}', 'server', 'server.c')],
                              extra_compile_args=extra_compile_args,
-                             extra_link_args=extra_link_args)
+                             extra_link_args=extra_link_args,
+                             depends=depends,
+                             language=lang)
 
-pkgname = 'RevChat'
+
 
 setup(
     name='RevChat',
